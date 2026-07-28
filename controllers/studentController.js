@@ -63,8 +63,37 @@ const getStudent = (req, res) => {
 
 };
 
+// Update student
+const updateStudent = (req, res) => {
+
+    const id = req.params.id;
+    const student = req.body;
+
+    studentModel.updateStudent(id, student, (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                message: "Database Error"
+            });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                message: "Student Not Found"
+            });
+        }
+
+        res.json({
+            message: "Student Updated Successfully"
+        });
+
+    });
+
+};
+
 module.exports = {
     getStudents,
     addStudent,
-    getStudent
+    getStudent,
+    updateStudent
 };

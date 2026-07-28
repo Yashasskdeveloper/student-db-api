@@ -33,8 +33,26 @@ const addStudent = (student, callback) => {
 
 };
 
+// Update student
+const updateStudent = (id, student, callback) => {
+
+    const sql = `
+        UPDATE students
+        SET name = ?, email = ?, age = ?, course = ?
+        WHERE id = ?
+    `;
+
+    db.query(
+        sql,
+        [student.name, student.email, student.age, student.course, id],
+        callback
+    );
+
+};
+
 module.exports = {
     getAllStudents,
     addStudent,
-    getStudentById
+    getStudentById,
+    updateStudent
 };

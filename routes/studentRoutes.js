@@ -8,12 +8,14 @@ const router = express.Router();
 const {
     getStudents,
     addStudent,
-    getStudent
+    getStudent,
+    updateStudent
 } = require("../controllers/studentController");
 
 router.get("/", getStudents);
 
 router.post("/", addStudent);
 router.get("/:id", getStudent);
+router.put("/:id", updateStudent);
 
 module.exports = router;
