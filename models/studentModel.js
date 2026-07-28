@@ -8,6 +8,14 @@ const getAllStudents = (callback) => {
     db.query(sql, callback);
 
 };
+// Get student by ID
+const getStudentById = (id, callback) => {
+
+    const sql = "SELECT * FROM students WHERE id = ?";
+
+    db.query(sql, [id], callback);
+
+};
 
 // Add new student
 const addStudent = (student, callback) => {
@@ -27,5 +35,6 @@ const addStudent = (student, callback) => {
 
 module.exports = {
     getAllStudents,
-    addStudent
+    addStudent,
+    getStudentById
 };

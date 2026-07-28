@@ -38,8 +38,33 @@ const addStudent = (req, res) => {
     });
 
 };
+// Get student by ID
+const getStudent = (req, res) => {
+
+    const id = req.params.id;
+
+    studentModel.getStudentById(id, (err, results) => {
+
+        if (err) {
+            return res.status(500).json({
+                message: "Database Error"
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                message: "Student Not Found"
+            });
+        }
+
+        res.json(results[0]);
+
+    });
+
+};
 
 module.exports = {
     getStudents,
-    addStudent
+    addStudent,
+    getStudent
 };
